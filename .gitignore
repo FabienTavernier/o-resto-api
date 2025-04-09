@@ -1,0 +1,16 @@
+# Mac OSX
+**/.DS_Store
+
+# Volume
+pg-data/
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# Environment variables files
+.env
+.env.test

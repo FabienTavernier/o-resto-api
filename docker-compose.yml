@@ -1,0 +1,44 @@
+services:
+  oresto-db:
+    image: postgres
+    container_name: oresto-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DATABASE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/init-oresto-db:/docker-entrypoint-initdb.d
+      - ./pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${PG_USER}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  oresto-gql-api:
+    container_name: oresto-gql-api
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app
+      - ~/.pnpm-store:/root/.pnpm-store
+      - /app/node_modules
+    ports:
+      - 4000:${PORT}
+    environment:
+      PORT: ${PORT}
+      PGDATABASE: ${PG_DATABASE}
+      PGUSER: ${PG_USER}
+      PGPASSWORD: ${PG_PASSWORD}
+      PGHOST: oresto-db
+      PGPORT: 5432
+      TOMORROW_API_KEY: ${TOMORROW_API_KEY}
+      NODE_ENV: ${NODE_ENV}
+    depends_on:
+      oresto-db:
+        condition: service_healthy
+    restart: unless-stopped
