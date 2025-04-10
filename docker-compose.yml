@@ -11,7 +11,7 @@ services:
       - "5432:5432"
     volumes:
       - ./src/init-oresto-db:/docker-entrypoint-initdb.d
-      - ./pg-data:/var/lib/postgresql/data
+      - pg-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${PG_USER}"]
       interval: 5s
@@ -42,3 +42,6 @@ services:
       oresto-db:
         condition: service_healthy
     restart: unless-stopped
+
+volumes:
+  pg-data:
