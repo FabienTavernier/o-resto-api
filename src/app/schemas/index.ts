@@ -12,9 +12,15 @@ import { join } from 'node:path';
 const __dirname = new URL('.', import.meta.url).pathname;
 
 const manager = readFileSync(join(__dirname, './manager.gql'), 'utf-8');
+const restaurant = readFileSync(join(__dirname, './restaurant.gql'), 'utf-8');
+const city = readFileSync(join(__dirname, './city.gql'), 'utf-8');
+const cuisine = readFileSync(join(__dirname, './cuisine.gql'), 'utf-8');
 
 const schema = `
   ${manager}
+  ${restaurant}
+  ${city}
+  ${cuisine}
 `;
 
 export default schema;

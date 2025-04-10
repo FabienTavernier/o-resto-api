@@ -1,0 +1,5 @@
+type Cuisine {
+  id: Int!
+  label: String!
+  restaurants: [Restaurant!]!
+}
