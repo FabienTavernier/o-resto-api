@@ -1,6 +1,15 @@
 import debug from 'debug';
-import type { QueryArgs } from '../../@types';
+import type { ContextValue, QueryArgs } from '../../@types';
 import restoDB from '../datasources/restoDB';
+
+/****************************
+ * ATTENTION
+ * désormais on exporte la classe et non plus une instance
+ *
+ * @TODO
+ * @FIX managers → @TODO use Context
+ * @FIX city
+ *****************************/
 
 const log = debug('app:resolvers:query');
 
@@ -9,7 +18,7 @@ const query = {
     log('get all managers');
 
     // doit retourner un [Manager!]! → schemas/query.gql
-    return await restoDB.manager.findAll();
+    return await new restoDB().manager.findAll();
   },
 
   async manager(_parent: null, { id }: QueryArgs) {
@@ -24,10 +33,10 @@ const query = {
     return await restoDB.city.findAll();
   },
 
-  async city(_parent: null, { id }: QueryArgs) {
+  async city(_parent: null, { id }: QueryArgs, { dataSources }: ContextValue) {
     log(`get the city with the ID ${id}`);
     // doit retourner un City! → schemas/query.gql
-    return await restoDB.city.findByPk(id);
+    return await dataSources.restoDB.city.findByPk(id);
   },
 
   async restaurants() {
