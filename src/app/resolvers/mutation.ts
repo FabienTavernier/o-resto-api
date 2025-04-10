@@ -1,4 +1,5 @@
 import debug from 'debug';
+import { GraphQLError } from 'graphql';
 import type { Manager } from '../../@types';
 import restoDB from '../datasources/restoDB';
 
@@ -12,6 +13,17 @@ const mutation = {
 
   async updateManager(_, args: { id: number; input: Manager }) {
     log(`update manager with ID ${args.id}`);
+
+    // On peut personnaliser la validation des données
+    // → https://www.apollographql.com/docs/apollo-server/data/errors
+    if (!args.input.email.includes('@')) {
+      throw new GraphQLError('manque arobase dans email', {
+        extensions: {
+          code: 'BAD_USER_INPUT',
+        },
+      });
+    }
+
     return await restoDB.manager.update(args.id, args.input);
   },
 };
