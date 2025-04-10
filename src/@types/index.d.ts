@@ -36,3 +36,16 @@ export type Location = {
   x: number;
   y: number;
 };
+
+// type des données reçues par l'API
+export type DayForecast = {
+  time: string;
+  values: {
+    weatherCodeMax: string;
+    temperatureAvg: number;
+    humidityAvg: number;
+    cloudCoverAvg: number;
+    windSpeedAvg: number;
+    precipitationProbabilityAvg: number;
+  };
+};
