@@ -7,3 +7,10 @@ type Manager {
   # association → je veux récupérer un manager AVEC ses restaurants
   restaurants: [Restaurant!]!
 }
+
+input CreateManagerInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+}

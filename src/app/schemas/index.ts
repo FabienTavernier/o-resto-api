@@ -12,6 +12,7 @@ import { join } from 'node:path';
 const __dirname = new URL('.', import.meta.url).pathname;
 
 const query = readFileSync(join(__dirname, './query.gql'), 'utf-8');
+const mutation = readFileSync(join(__dirname, './mutation.gql'), 'utf-8');
 const manager = readFileSync(join(__dirname, './manager.gql'), 'utf-8');
 const restaurant = readFileSync(join(__dirname, './restaurant.gql'), 'utf-8');
 const city = readFileSync(join(__dirname, './city.gql'), 'utf-8');
@@ -19,6 +20,7 @@ const cuisine = readFileSync(join(__dirname, './cuisine.gql'), 'utf-8');
 
 const schema = `
   ${query}
+  ${mutation}
   ${manager}
   ${restaurant}
   ${city}
