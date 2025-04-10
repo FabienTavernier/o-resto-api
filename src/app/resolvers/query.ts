@@ -1,34 +1,21 @@
 import debug from 'debug';
 import type { QueryArgs } from '../../@types';
+import restoDB from '../datasources/restoDB';
 
 const log = debug('app:resolvers:query');
 
 const query = {
-  managers() {
+  async managers() {
     log('get all managers');
 
     // doit retourner un [Manager!]! → schemas/query.gql
-    return [
-      {
-        id: 42,
-        first_name: 'Dave',
-        last_name: 'Lopper',
-        email: 'dave@mail.io',
-        restaurants: [], // tableau vide → valide
-      },
-    ];
+    return await restoDB.manager.findAll();
   },
 
-  manager(_parent: null, { id }: QueryArgs) {
+  async manager(_parent: null, { id }: QueryArgs) {
     log(`get the manager with the ID ${id}`);
     // doit retourner un Manager! → schemas/query.gql
-    return {
-      id: 42,
-      first_name: 'Dave',
-      last_name: 'Lopper',
-      email: 'dave@mail.io',
-      restaurants: [],
-    };
+    return await restoDB.manager.findByPk(id);
   },
 };
 
