@@ -10,6 +10,7 @@ logs
 
 # Dependency directories
 node_modules/
+.pnpm-store
 
 # Environment variables files
 .env
