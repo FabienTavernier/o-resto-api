@@ -1,0 +1,9 @@
+type Manager {
+  # propriétés qui proviennent de la table manager
+  id: Int!
+  email: String!
+  firstName: String!
+  lastName: String!
+  # association → je veux récupérer un manager AVEC ses restaurants
+  restaurants: [Restaurant!]!
+}
