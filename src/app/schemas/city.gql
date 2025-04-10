@@ -4,6 +4,7 @@ type City {
   postalCode: String!
   restaurants: [Restaurant!]!
   location: Location!
+  weather: Weather!
 }
 
 type Location {
