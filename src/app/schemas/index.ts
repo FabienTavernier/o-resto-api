@@ -17,6 +17,7 @@ const manager = readFileSync(join(__dirname, './manager.gql'), 'utf-8');
 const restaurant = readFileSync(join(__dirname, './restaurant.gql'), 'utf-8');
 const city = readFileSync(join(__dirname, './city.gql'), 'utf-8');
 const cuisine = readFileSync(join(__dirname, './cuisine.gql'), 'utf-8');
+const weather = readFileSync(join(__dirname, './weather.gql'), 'utf-8');
 
 const schema = `
   ${query}
@@ -25,6 +26,7 @@ const schema = `
   ${restaurant}
   ${city}
   ${cuisine}
+  ${weather}
 `;
 
 export default schema;

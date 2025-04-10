@@ -1,0 +1,12 @@
+type Weather {
+  daily: [Forecast!]!
+}
+
+type Forecast {
+  time: String!
+  weather: String!
+  temperature: Float!
+  windSpeed: Float!
+  cloudCover: Float!
+  precipitationProbability: Float!
+}
