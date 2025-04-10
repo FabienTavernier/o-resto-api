@@ -4,7 +4,7 @@ type Restaurant {
   description: String!
   terrace: Boolean!
   rating: Float!
-  rating_count: Int!
+  ratingCount: Int!
   manager: Manager!
   city: City!
   cuisines: [Cuisine!]!

@@ -1,4 +1,13 @@
 type Query {
   managers: [Manager!]!
   manager(id: Int!): Manager!
+
+  cities: [City!]!
+  city(id: Int!): City!
+
+  restaurants: [Restaurant!]!
+  restaurant(id: Int!): Restaurant!
+
+  cuisines: [Cuisine!]!
+  cuisine(id: Int!): Cuisine!
 }

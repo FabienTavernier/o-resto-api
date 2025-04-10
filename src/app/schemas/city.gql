@@ -1,7 +1,7 @@
 type City {
   id: Int!
   name: String!
-  postal_code: String!
+  postalCode: String!
   restaurants: [Restaurant!]!
   location: Location!
 }
