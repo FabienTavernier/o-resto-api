@@ -1,5 +1,15 @@
+import type RestoDB from '../app/datasources/restoDB';
+import type WeatherAPI from '../app/datasources/weatherAPI';
+
 export type QueryArgs = {
   id: number;
+};
+
+export type ContextValue = {
+  dataSources: {
+    restoDB: RestoDB;
+    weatherAPI: WeatherAPI;
+  };
 };
 
 export type Restaurant = {

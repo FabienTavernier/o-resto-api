@@ -38,4 +38,4 @@ class WeatherAPI extends RESTDataSource {
   }
 }
 
-export default new WeatherAPI();
+export default WeatherAPI;

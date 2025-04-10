@@ -22,4 +22,4 @@ class RestoDB {
   }
 }
 
-export default new RestoDB();
+export default RestoDB;
