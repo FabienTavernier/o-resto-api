@@ -1,3 +1,5 @@
 type Mutation {
   createManager(input: CreateManagerInput): Manager!
+
+  updateManager(id: Int!, input: UpdateManagerInput): Manager!
 }

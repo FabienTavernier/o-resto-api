@@ -9,6 +9,11 @@ const mutation = {
     log('create new manager');
     return await restoDB.manager.create(input);
   },
+
+  async updateManager(_, args: { id: number; input: Manager }) {
+    log(`update manager with ID ${args.id}`);
+    return await restoDB.manager.update(args.id, args.input);
+  },
 };
 
 export default mutation;
