@@ -26,6 +26,11 @@ const mutation = {
 
     return await restoDB.manager.update(args.id, args.input);
   },
+
+  async deleteManager(_, args: { id: number }) {
+    log(`delete manager with ID ${args.id}`);
+    return await restoDB.manager.delete(args.id);
+  },
 };
 
 export default mutation;
