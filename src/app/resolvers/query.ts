@@ -1,62 +1,59 @@
 import debug from 'debug';
 import type { ContextValue, QueryArgs } from '../../@types';
-import restoDB from '../datasources/restoDB';
-
-/****************************
- * ATTENTION
- * désormais on exporte la classe et non plus une instance
- *
- * @TODO
- * @FIX managers → @TODO use Context
- * @FIX city
- *****************************/
 
 const log = debug('app:resolvers:query');
 
 const query = {
-  async managers() {
+  async managers(_parent, __args, { dataSources }: ContextValue) {
     log('get all managers');
-
-    // doit retourner un [Manager!]! → schemas/query.gql
-    return await new restoDB().manager.findAll();
+    return await dataSources.restoDB.manager.findAll();
   },
 
-  async manager(_parent: null, { id }: QueryArgs) {
+  async manager(
+    _parent: null,
+    { id }: QueryArgs,
+    { dataSources }: ContextValue,
+  ) {
     log(`get the manager with the ID ${id}`);
-    // doit retourner un Manager! → schemas/query.gql
-    return await restoDB.manager.findByPk(id);
+    return await dataSources.restoDB.manager.findByPk(id);
   },
 
-  async cities() {
+  async cities(_parent, __args, { dataSources }: ContextValue) {
     log('get all cities');
-    // doit retourner un [City!]! → schemas/query.gql
-    return await restoDB.city.findAll();
+    return await dataSources.restoDB.city.findAll();
   },
 
   async city(_parent: null, { id }: QueryArgs, { dataSources }: ContextValue) {
     log(`get the city with the ID ${id}`);
-    // doit retourner un City! → schemas/query.gql
     return await dataSources.restoDB.city.findByPk(id);
   },
 
-  async restaurants() {
+  async restaurants(_parent, __args, { dataSources }: ContextValue) {
     log('get all restaurants');
-    return await restoDB.restaurant.findAll();
+    return await dataSources.restoDB.restaurant.findAll();
   },
 
-  async restaurant(_parent: null, { id }: QueryArgs) {
+  async restaurant(
+    _parent: null,
+    { id }: QueryArgs,
+    { dataSources }: ContextValue,
+  ) {
     log(`get the restaurant with the ID ${id}`);
-    return await restoDB.restaurant.findByPk(id);
+    return await dataSources.restoDB.restaurant.findByPk(id);
   },
 
-  async cuisines() {
+  async cuisines(_parent, __args, { dataSources }: ContextValue) {
     log('get all cuisines');
-    return await restoDB.cuisine.findAll();
+    return await dataSources.restoDB.cuisine.findAll();
   },
 
-  async cuisine(_parent: null, { id }: QueryArgs) {
+  async cuisine(
+    _parent: null,
+    { id }: QueryArgs,
+    { dataSources }: ContextValue,
+  ) {
     log(`get the cuisine with the ID ${id}`);
-    return await restoDB.cuisine.findByPk(id);
+    return await dataSources.restoDB.cuisine.findByPk(id);
   },
 };
 

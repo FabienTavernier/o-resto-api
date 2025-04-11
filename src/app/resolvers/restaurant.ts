@@ -1,23 +1,22 @@
 import debug from 'debug';
-import type { Restaurant } from '../../@types';
-import restoDB from '../datasources/restoDB';
+import type { ContextValue, Restaurant } from '../../@types';
 
 const log = debug('app:resolvers:restaurant');
 
 const restaurant = {
-  async manager(parent: Restaurant) {
+  async manager(parent: Restaurant, _args, { dataSources }: ContextValue) {
     log(`get manager for restaurant ${parent.name}`);
-    return await restoDB.manager.findByPk(parent.managerId);
+    return await dataSources.restoDB.manager.findByPk(parent.managerId);
   },
 
-  async city(parent: Restaurant) {
+  async city(parent: Restaurant, _args, { dataSources }: ContextValue) {
     log(`get city for restaurant ${parent.name}`);
-    return await restoDB.city.findByPk(parent.cityId);
+    return await dataSources.restoDB.city.findByPk(parent.cityId);
   },
 
-  async cuisines(parent: Restaurant) {
+  async cuisines(parent: Restaurant, _args, { dataSources }: ContextValue) {
     log(`get cuisines for restaurant ${parent.name}`);
-    return await restoDB.cuisine.findByRestaurant(parent.id);
+    return await dataSources.restoDB.cuisine.findByRestaurant(parent.id);
   },
 };
 
