@@ -14,4 +14,13 @@ type Mutation {
   createCuisine(input: CreateCuisineInput!): Cuisine!
   updateCuisine(id: Int!, input: UpdateCuisineInput!): Cuisine!
   deleteCuisine(id: Int!): Boolean!
+
+  associateRestaurantAndCuisine(
+    restaurantId: Int!
+    cuisineId: Int!
+  ): Restaurant!
+  dissociateRestaurantAndCuisine(
+    restaurantId: Int!
+    cuisineId: Int!
+  ): Restaurant!
 }

@@ -103,6 +103,33 @@ const mutation = {
     log(`delete cuisine with ID ${args.id}`);
     return await dataSources.restoDB.cuisine.delete(args.id);
   },
+
+  async associateRestaurantAndCuisine(
+    _,
+    args: { restaurantId: number; cuisineId: number },
+    { dataSources }: ContextValue,
+  ) {
+    log(
+      `associate restaurant with id ${args.restaurantId} and cuisine with id ${args.cuisineId}`,
+    );
+    return await dataSources.restoDB.restaurant.associateWithCuisine(
+      args.restaurantId,
+      args.cuisineId,
+    );
+  },
+  async dissociateRestaurantAndCuisine(
+    _,
+    args: { restaurantId: number; cuisineId: number },
+    { dataSources }: ContextValue,
+  ) {
+    log(
+      `dissociate restaurant with id ${args.restaurantId} and cuisine with id ${args.cuisineId}`,
+    );
+    return await dataSources.restoDB.restaurant.dissociateWithCuisine(
+      args.restaurantId,
+      args.cuisineId,
+    );
+  },
 };
 
 export default mutation;
