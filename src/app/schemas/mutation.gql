@@ -1,7 +1,9 @@
 type Mutation {
   createManager(input: CreateManagerInput): Manager!
-
   updateManager(id: Int!, input: UpdateManagerInput): Manager!
-
   deleteManager(id: Int!): Boolean!
+
+  createRestaurant(input: CreateRestaurantInput!): Restaurant!
+  updateRestaurant(id: Int!, input: UpdateRestaurantInput!): Restaurant!
+  deleteRestaurant(id: Int!): Boolean!
 }
