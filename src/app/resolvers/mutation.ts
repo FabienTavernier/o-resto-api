@@ -1,6 +1,12 @@
 import debug from 'debug';
 import { GraphQLError } from 'graphql';
-import type { ContextValue, Manager, Restaurant } from '../../@types';
+import type {
+  City,
+  ContextValue,
+  Cuisine,
+  Manager,
+  Restaurant,
+} from '../../@types';
 
 const log = debug('app:resolvers:mutation');
 
@@ -58,6 +64,44 @@ const mutation = {
   ) {
     log(`delete restaurant with ID ${args.id}`);
     return await dataSources.restoDB.restaurant.delete(args.id);
+  },
+
+  async createCity(_, args: { input: City }, { dataSources }: ContextValue) {
+    log('create new city');
+    return await dataSources.restoDB.city.create(args.input);
+  },
+  async updateCity(
+    _,
+    args: { id: number; input: City },
+    { dataSources }: ContextValue,
+  ) {
+    log(`update city with id ${args.id}`);
+    return await dataSources.restoDB.city.update(args.id, args.input);
+  },
+  async deleteCity(_, args: { id: number }, { dataSources }: ContextValue) {
+    log(`delete city with ID ${args.id}`);
+    return await dataSources.restoDB.city.delete(args.id);
+  },
+
+  async createCuisine(
+    _,
+    args: { input: Cuisine },
+    { dataSources }: ContextValue,
+  ) {
+    log('create new cuisine');
+    return await dataSources.restoDB.cuisine.create(args.input);
+  },
+  async updateCuisine(
+    _,
+    args: { id: number; input: Cuisine },
+    { dataSources }: ContextValue,
+  ) {
+    log(`update cuisine with id ${args.id}`);
+    return await dataSources.restoDB.cuisine.update(args.id, args.input);
+  },
+  async deleteCuisine(_, args: { id: number }, { dataSources }: ContextValue) {
+    log(`delete cuisine with ID ${args.id}`);
+    return await dataSources.restoDB.cuisine.delete(args.id);
   },
 };
 
