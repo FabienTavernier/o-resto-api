@@ -11,3 +11,23 @@ type Location {
   x: Float!
   y: Float!
 }
+
+input CreateCityInput {
+  name: String!
+  postalCode: String!
+  # Attention, on ne « mélange » pas `type` et `input` :
+  # - les types sont uniquement pour la lecture
+  # - les inputs pour les paramètres d'entrées
+  location: LocationInput!
+}
+
+input UpdateCityInput {
+  name: String
+  postalCode: String
+  location: LocationInput
+}
+
+input LocationInput {
+  x: Float!
+  y: Float!
+}

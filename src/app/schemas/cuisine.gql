@@ -3,3 +3,11 @@ type Cuisine {
   label: String!
   restaurants: [Restaurant!]!
 }
+
+input CreateCuisineInput {
+  label: String!
+}
+
+input UpdateCuisineInput {
+  label: String
+}

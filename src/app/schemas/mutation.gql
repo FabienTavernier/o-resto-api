@@ -6,4 +6,12 @@ type Mutation {
   createRestaurant(input: CreateRestaurantInput!): Restaurant!
   updateRestaurant(id: Int!, input: UpdateRestaurantInput!): Restaurant!
   deleteRestaurant(id: Int!): Boolean!
+
+  createCity(input: CreateCityInput!): City!
+  updateCity(id: Int!, input: UpdateCityInput!): City!
+  deleteCity(id: Int!): Boolean!
+
+  createCuisine(input: CreateCuisineInput!): Cuisine!
+  updateCuisine(id: Int!, input: UpdateCuisineInput!): Cuisine!
+  deleteCuisine(id: Int!): Boolean!
 }
